@@ -13,4 +13,5 @@ namespace EjerciciosDePrueba.Enums
         Bluetooth = 2,
         CD = 3
     }
+
 }

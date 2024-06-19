@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EjerciciosDePrueba.Clases
 {
-    internal class Persona
+    public class Persona
     {
         private string nombre;
         private string direccion;

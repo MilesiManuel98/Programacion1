@@ -2,7 +2,7 @@
 using EjerciciosDePrueba.Enums;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-internal class Program
+public class ProgramEjercicios
 {
     private static void Main(string[] args)
     {
@@ -16,7 +16,75 @@ internal class Program
         //PruebaDeObjetoSplit();
         //PruebaDeObjetoPersonas();
         //PruebaPavaElectrica();
-        PruebaEsterio();
+        //PruebaEsterio();
+        //PruebaDeClaseAbstractasYHerencias();
+        //PruebaCalculadoraPasajePorReferencia();
+        //Console.WriteLine(fechasValidasInvalidas(29,2,2023));
+        //Console.WriteLine(testCalcularDiasDeVida(20, 7, 1998));
+        //Console.WriteLine(testTipoDeTriangulo(1,1,1));
+        //pruebaDeClasesGenericas();
+    }
+
+    private static void pruebaDeClasesGenericas()
+    {
+        Empresa<Empleado> empresa = new Empresa<Empleado>("Nintendo");
+        Gerente empleado1 = new Gerente("Mercede","Sosa");
+        Gerente empleado2 = new Gerente("Cacho","Castaña");
+        empresa.agregarEmpleado(empleado1);
+        empresa.agregarEmpleado(empleado2);
+        Console.WriteLine(empresa.listarPersonas());
+        empresa.quitarEmploado(empleado2);
+        Console.WriteLine(empresa.listarPersonas());
+    }
+
+    public static string testTipoDeTriangulo(int lado1, int lado2, int lado3)
+    {
+
+        if (lado1 == lado2 && lado2 == lado3)
+            return "equilatero";
+        else if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3)
+            return "isósceles";
+        else
+            return "escaleno";
+
+    }
+    public static int testCalcularDiasDeVida(int dias, int meses, int años)
+    {
+        int diasTotales;
+
+        diasTotales = años * 365 + meses * 30 + dias;
+
+        return diasTotales;
+
+    }
+    public static bool fechasValidasInvalidas(int dia, int mes, int año)
+
+    {
+
+        if ((dia >= 1 && dia <= 31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12))
+            return true;
+        else if ((dia >= 1 && dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11))
+            return true;
+        else if ((dia == 29) && (mes == 2) && (año % 4 == 0) || (dia >= 1 && dia <= 28) && (mes == 2))
+            return true;
+        else
+            return false;
+
+    }
+    private static void PruebaCalculadoraPasajePorReferencia()
+    {
+        int a = 123;
+        int b = 10;
+        int total = 0;
+        Calculadora calculadora = new Calculadora();
+        calculadora.Sumar(a, b,ref total);
+        Console.WriteLine("La suma total es: "+ total);
+    }
+
+    private static void PruebaDeClaseAbstractasYHerencias()
+    {
+        Gerente juan = new Gerente("Maria Antinieta","de las Nieves");
+        Console.WriteLine(juan.ImprimirInfo());
     }
 
     private static void PruebaEsterio()
@@ -24,6 +92,24 @@ internal class Program
         Estereo miEstereo = new Estereo("Pioneer","Negro","Plastico");
         miEstereo.PresionarBotonEncendido();
         miEstereo.CambiarModo(ModoEstereoEnum.Auxiliar);
+        miEstereo.SeleccionarModo();
+        Console.WriteLine("----------------------------");
+        Thread.Sleep(2000);
+        miEstereo.CambiarModo(ModoEstereoEnum.Bluetooth);
+        miEstereo.SeleccionarModo();
+        Console.WriteLine("----------------------------");
+        Thread.Sleep(2000);
+        miEstereo.CambiarModo(ModoEstereoEnum.CD);
+        miEstereo.SeleccionarModo();
+        Console.WriteLine("----------------------------");
+        Thread.Sleep(2000);
+        miEstereo.CambiarModo(ModoEstereoEnum.Radio);
+        miEstereo.SeleccionarModo();
+        Console.WriteLine("----------------------------");
+        Thread.Sleep(2000);
+        miEstereo.PresionarBotonEncendido();
+        miEstereo.SeleccionarModo();
+
     }
 
     private static void PruebaPavaElectrica()
